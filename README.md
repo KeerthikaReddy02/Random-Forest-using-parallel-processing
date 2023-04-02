@@ -10,4 +10,5 @@ Values for 325 chemicals are included in this data set. 228 molecular descriptor
 
 ## Proposed work
 Each tree is built serially in a standard Random Forest. Time complexity: O(t|K|nlogn), with t equal to the number of trees. K: the number of selected features n is the size of the practise set. Although adding more trees can increase accuracy, it can also extend training time. Consequently, we employ parallel processing when programming in R.
+
 rf <- randomForest(x=data, y=classes, ntree=5000, ...) The ntree parameter, which informs us of how many trees the forest would have, contains the parallelism in this situation. The trees are evenly distributed among the available processes in our task parallel approach, which then creates these sub forests in parallel before combining them into a bigger forest that is returned on the master process.  Speed up can be achieved by two-folds.
